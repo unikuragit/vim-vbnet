@@ -34,34 +34,35 @@ syn match vbnetOperator "\s\+_$"
 " {{{
 syn keyword vbnetStorage Delegate Namespace
 syn keyword vbnetTypeDef Class Interface
-syn match vbnetTypeDefEnd "\<End\> \(Class\|Interface\|NameSpace\)$"
+syn match vbnetTypeDefEnd "\<End\> \<\(Class\|Interface\|NameSpace\)\>"
 
 syn keyword vbnetStructure Structure Enum Module
-syn match vbnetStructureEnd "\<End\> \(Structure\|Enum\|Module\)$"
+syn match vbnetStructureEnd "\<End\> \<\(Structure\|Enum\|Module\)\>"
 
-syn keyword vbnetRepeat For Each Return While Next To
-syn keyword vbnetConditional If Then Else ElseIf Case
-syn match vbnetConditional "^\s+Select Case"
-syn match vbnetConditionalEnd "\<End\> \(If\|Select\)$"
+syn keyword vbnetRepeat For Each Return While Next To In
+syn keyword vbnetConditional If Then Else ElseIf Case Select
+syn match vbnetConditionalEnd "\<End\> \<\(If\|Select\|While\)\>"
 
 syn keyword vbnetModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
 syn keyword vbnetFunction Sub Function Operator
-syn match vbnetFunction "\<End\> \(Function\|Sub\)"
+syn match vbnetFunction "\<End\> \<\(Function\|Sub\)\>"
 
 syn keyword vbnetScopeDecl Private Protected Public Friend
 
 syn keyword vbnetSpecial Call Of
 syn keyword vbnetSugar AddHandler AddressOf Alias WithEvents RemoveHandler Handles From
-syn match vbnetDefAnonymousTypedef "=\s\<New\> \(With$\|With {$\)"
+syn match vbnetDefAnonymousTypedef "=\s\<New\> \(\<With\>\|\<With\> {\)"
 
 syn keyword vbnetProperty Property Get Set
-syn match vbnetPropertyEnd "^\s*End \(Get\|Set\|Property\)$"
+syn match vbnetPropertyEnd "^\s*End \<\(Get\|Set\|Property\)\>"
 
-syn keyword vbnetKeyword ByVal GetType ParamArray On Option Optional Exit Imports
+syn keyword vbnetKeyword ByVal GetType ParamArray On Option Optional Exit Imports CType
 syn keyword vbnetException Try Catch Finally Throw
-syn match vbnetException "\<End\> Try$"
+syn match vbnetException "\<End\> \<Try\>"
 syn match vbnetUsing 'Using'
-syn match vbnetUsing "\<End\> Using$"
+syn match vbnetUsing "\<End\> \<Using\>"
+syn match vbnetBlock 'With'
+syn match vbnetBlock "\<End\> \<With\>"
 syn keyword vbnetOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
 syn keyword vbnetBoolean True False
 syn match vbnetDelimiter "\(,\|\.\|:\|{\|}\|\s_$\)"
@@ -86,18 +87,18 @@ syn region vbnetString start=+"+ end=+"+
 syn region vbnetComment start="\<REM\>" end="$" contains=vbnetTodo
 syn region vbnetComment start="'" end="$" contains=vbnetTodo
 
-syn region vbnetPreCondit start="^#If\s" end="Then$"
-syn region vbnetPreCondit start="^#ElseIf\s" end="Then$"
-syn match vbnetPreCondit "^#Else$"
-syn match vbnetPreCondit "^#End If$"
+syn region vbnetPreCondit start="^#If\s" end="Then\>"
+syn region vbnetPreCondit start="^#ElseIf\s" end="Then\>"
+syn match vbnetPreCondit "^#Else\>"
+syn match vbnetPreCondit "^#End If\>"
 
-syn region vbnetPreCondit start="^#Region\s\+\"" end="\"$"
-syn match vbnetPreCondit "^#End Region$"
+syn region vbnetPreCondit start="^#Region\s\+\"" end="\""
+syn match vbnetPreCondit "^#End Region\>"
 
-syn region vbnetPreCondit start="^#ExternalSource(" end=")$"
-syn match vbnetPreCondit "^#End ExternalSource$"
+syn region vbnetPreCondit start="^#ExternalSource(" end=")"
+syn match vbnetPreCondit "^#End ExternalSource\>"
 
-syn region vbnetPreCondit start="^#Const\s" end="$"
+syn region vbnetPreCondit start="^#Const\s" end="'\@!"
 
 syn region vbnetLineNumber start="^\d" end="\s"
 
@@ -133,6 +134,7 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetKeyword Keyword
     hi link vbnetException Exception
     hi link vbnetUsing Exception
+		hi link vbnetBlock Conditional
     hi link vbnetAttribute PreProc
     hi link vbnetStorage StorageClass
     hi link vbnetModifier vbnetStorage
