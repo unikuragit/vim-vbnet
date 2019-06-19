@@ -41,7 +41,8 @@ syn match vbnetStructureEnd "\<End\> \<\(Structure\|Enum\|Module\)\>"
 
 syn keyword vbnetRepeat For Each Return While Next To In
 syn keyword vbnetConditional If Then Else ElseIf Case Select
-syn match vbnetConditionalEnd "\<End\> \<\(If\|Select\|While\)\>"
+syn match vbnetConditionalEnd "\<End\> \<\(If\|Select\)\>"
+syn match vbnetRepeatEnd "\<End\> \<\(While\)\>"
 
 syn keyword vbnetModifier Inherits Implements MustInherit MustOverride Const Overrides Overridable Overloads Readonly WriteOnly Shared NotInheritable NotOverridable Shadows
 syn keyword vbnetFunction Sub Function Operator
@@ -129,6 +130,7 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetConst Constant
     hi link vbnetBoolean Boolean
     hi link vbnetRepeat Repeat
+    hi link vbnetRepeatEnd Repeat
     hi link vbnetConditional Conditional
     hi link vbnetConditionalEnd Conditional
     hi link vbnetKeyword Keyword
