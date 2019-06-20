@@ -115,6 +115,7 @@ inoreabbr <silent> <buffer> goto <C-R>=VBNetIab_ReplaceConditionally('goto', 'Go
 inoreabbr <silent> <buffer> like <C-R>=VBNetIab_ReplaceConditionally('like', 'Like')<CR>
 inoreabbr <silent> <buffer> exit <C-R>=VBNetIab_ReplaceConditionally('exit', 'Exit')<CR>
 inoreabbr <silent> <buffer> friend <C-R>=VBNetIab_ReplaceConditionally('friend', 'Friend')<CR>
+inoreabbr <silent> <buffer> iif <C-R>=VBNetIab_ReplaceConditionally('iif', 'IIf')<CR>
 
 if exists("loaded_matchit")
     let b:match_ignorecase = 1
