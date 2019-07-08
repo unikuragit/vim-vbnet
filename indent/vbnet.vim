@@ -51,7 +51,7 @@ function VbNetGetIndent(lnum)
   let method_modifier = '\(\<\(Overrides\|Overridable\|Overloads\|NotOverridable\|MustOverride\|Shadows\|Shared\|ReadOnly\|WriteOnly\)\>\s\+\)\?'
   let modifier = access_modifier . method_modifier
 
-  let close_end_statement = '\<\(If\|With\|Select\|Try\|Using\|Sub\|Function\|Property\|Class\|Module\|Interface\|Namespace\|Structure\|Enum\|Operator\)\>'
+  let close_end_statement = '\<\(If\|With\|Select\|Try\|Using\|Sub\|Function\|Property\|Get\|Set\|Class\|Module\|Interface\|Namespace\|Structure\|Enum\|Operator\)\>'
 
 
   if this_line =~? '^\s*End\s\+' . close_end_statement
@@ -99,6 +99,7 @@ function VbNetGetIndent(lnum)
     return ind
   elseif this_line =~? '\s*\(\<Next\>\)'
     return ind - &l:shiftwidth
+  elseif this_line =~? '\s*\(\<Get\>\|\<Set\>\s\*(\)'
   endif
 
   if previous_line =~ '\s_$' || previous_line =~ ',$' || previous_line =~ '^\s*\.'
@@ -109,11 +110,17 @@ function VbNetGetIndent(lnum)
     return ind + &l:shiftwidth
   elseif previous_line =~? '^\s*' . modifier . '\<\(Class\|Module\|Enum\|Interface\|Operator\|Sub\|Function\)\>'
     return ind + &l:shiftwidth
+  elseif previous_line =~? '^\s*' . modifier . '\<\(Property\)\>'
+    if this_line =~? '^\s*\(\<Get\>\|\<Set\>\)'
+      return ind + &l:shiftwidth
+    endif
   endif
 
   if previous_line =~? 'Then$'
     return ind + &l:shiftwidth
-  elseif previous_line =~? '^\s*\<\(Select Case\|Else\|ElseIf\|For\|While\|Using\|Try\|Catch\|Finally\)\>'
+  elseif previous_line =~? '^\s*\<\(Select Case\|Else\|ElseIf\|For\|While\|Using\|With\|Try\|Catch\|Finally\)\>'
+    return ind + &l:shiftwidth
+  elseif previous_line =~? '^\s*\<\(Get\|Set\)\>'
     return ind + &l:shiftwidth
   elseif previous_line =~? '^\s\+}$'
     return &l:shiftwidth + &l:shiftwidth
