@@ -64,6 +64,8 @@ syn match vbnetUsing 'Using'
 syn match vbnetUsing "\<End\> \<Using\>"
 syn match vbnetBlock 'With'
 syn match vbnetBlock "\<End\> \<With\>"
+syn match vbnetSyncBlock 'SyncLock'
+syn match vbnetSyncBlock "\<End\> \<SyncLock\>"
 syn keyword vbnetOperator New And Or AndAlso OrElse Is Not IsNot Like Mod
 syn keyword vbnetBoolean True False
 syn match vbnetDelimiter "\(,\|\.\|:\|{\|}\|\s_$\)"
@@ -137,6 +139,7 @@ if version >= 508 || !exists("did_vbnet")
     hi link vbnetException Exception
     hi link vbnetUsing Exception
 		hi link vbnetBlock Conditional
+		hi link vbnetSyncBlock Conditional
     hi link vbnetAttribute PreProc
     hi link vbnetStorage StorageClass
     hi link vbnetModifier vbnetStorage

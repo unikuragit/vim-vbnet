@@ -39,6 +39,7 @@ inoreabbr <silent> <buffer> string <C-R>=VBNetIab_ReplaceConditionally('string',
 inoreabbr <silent> <buffer> date <C-R>=VBNetIab_ReplaceConditionally('date', 'Date')<CR>
 inoreabbr <silent> <buffer> long <C-R>=VBNetIab_ReplaceConditionally('long', 'Long')<CR>
 inoreabbr <silent> <buffer> with <C-R>=VBNetIab_ReplaceConditionally('with', 'With')<CR>
+inoreabbr <silent> <buffer> synclock <C-R>=VBNetIab_ReplaceConditionally('synclock', 'SyncLock')<CR>
 inoreabbr <silent> <buffer> select <C-R>=VBNetIab_ReplaceConditionally('select', 'Select')<CR>
 inoreabbr <silent> <buffer> case <C-R>=VBNetIab_ReplaceConditionally('case', 'Case')<CR>
 inoreabbr <silent> <buffer> true <C-R>=VBNetIab_ReplaceConditionally('true', 'True')<CR>
