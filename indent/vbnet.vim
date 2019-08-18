@@ -15,7 +15,7 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 
 setlocal indentexpr=VbNetGetIndent(v:lnum)
-setlocal indentkeys=!^F,o,O,0#,0=~end\ ,0=~catch,0=~else,0=~next,<:>
+setlocal indentkeys=!^F,o,O,0#,=~if,=~with,=~select,=~try,=~sub,=~function,=~property,=~class,=~module,=~interface,=~namespace,=~structure,=~enum,=~operator,=~get,=~set,0=~case,0=~catch,0=~finally,0=~else,0=~next,<:>
 
 " Only define the function once.
 if exists("*VbNetGetIndent")
